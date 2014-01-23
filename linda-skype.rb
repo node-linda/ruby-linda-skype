@@ -23,17 +23,17 @@ ts = linda.tuplespace(ENV['LINDA_SPACE'])
 
 linda.io.on :connect do
   puts "connect!!"
-  puts "watching {type: 'skype', cmd: 'send'} in tuplespace #{ts.name}"
-  puts " => #{linda.url}/#{ts.name}?type=skype&cmd=send&value=hello"
+  puts "watching {type: 'skype', cmd: 'post'} in tuplespace #{ts.name}"
+  puts " => #{linda.url}/#{ts.name}?type=skype&cmd=post&value=hello"
 
-  ts.watch type: "skype", cmd: "send" do |err, tuple|
+  ts.watch type: "skype", cmd: "post" do |err, tuple|
     p tuple
     next if tuple.data.response
     str = tuple.data.value.to_s
     next if str.empty?
     msg = "(ninja) 《Linda》 #{str} 《#{ts.name}》"
     chat.post msg
-    ts.write type: "skype", cmd: "send", value: str, response: "success"
+    ts.write type: "skype", cmd: "post", value: str, response: "success"
   end
 
 end

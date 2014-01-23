@@ -3,8 +3,8 @@ Linda Skype
 send skype message with [linda-socket.io](https://github.com/node-linda/linda-socket.io)
 
 - https://github.com/node-linda/ruby-linda-skype
-- watch {type: "skype", cmd: "send"}
-  - write {type: "skype", cmd: "send", value: "~~~", response: "success"}
+- watch {type: "skype", cmd: "post"}
+  - write {type: "skype", cmd: "post", value: "~~~", response: "success"}
 
 
 ## Dependencies
@@ -26,7 +26,7 @@ to the chat which topic matches /linda/
 
     % CHAT_TOPIC=linda foreman start
 
-=> http://node-linda-base.herokuapp.com/test?type=skype&cmd=send&value=hello
+=> http://node-linda-base.herokuapp.com/test?type=skype&cmd=post&value=hello
 
 
 ## Run with your [linda-base](https://github.com/node-linda/node-linda-base)
