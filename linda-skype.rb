@@ -5,14 +5,14 @@ require 'skype'
 require 'linda-socket.io-client'
 $stdout.sync = true
 
-ENV['LINDA_BASE'] ||= 'http://node-linda-base.herokuapp.com'
+ENV['LINDA_BASE']  ||= 'http://node-linda-base.herokuapp.com'
 ENV['LINDA_SPACE'] ||= 'test'
 ENV["CHAT_TOPIC"]  ||= 'linda'
 
 chat = Skype.chats.find{|c| c.topic =~ /#{ENV['CHAT_TOPIC']}/ }
 
 unless chat
-  STDERR.puts "chat not found"
+  STDERR.puts "chat not found topic matches /#{ENV['CHAT_TOPIC']}/"
   exit 1
 end
 
@@ -28,8 +28,8 @@ linda.io.on :connect do
 
   ts.watch type: "skype", cmd: "send" do |err, tuple|
     p tuple
-    next if tuple["data"].has_key? "response"
-    str = tuple["data"]["value"].to_s
+    next if tuple.data.response
+    str = tuple.data.value.to_s
     next if str.empty?
     msg = "(ninja) 《Linda》 #{str} 《#{ts.name}》"
     chat.post msg
