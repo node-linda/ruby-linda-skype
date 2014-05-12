@@ -1,8 +1,8 @@
-Linda Skype
-===========
+Skype Chat
+==========
 send skype message with [linda-socket.io](https://github.com/node-linda/linda-socket.io)
 
-- https://github.com/node-linda/ruby-linda-skype
+- https://github.com/node-linda/skype-chat
 - watch {type: "skype", cmd: "post"}
   - write {type: "skype", cmd: "post", value: "~~~", response: "success"}
 
